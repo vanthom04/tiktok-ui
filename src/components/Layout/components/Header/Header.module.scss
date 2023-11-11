@@ -29,7 +29,7 @@
   position: relative;
   height: var(--search-height);
   padding-left: 16px;
-  background-color: rgba($color: #161823, $alpha: 0.06);
+  background-color: rgba(23, 25, 36, 0.06);
   border-radius: var(--search-border-radius);
   border: 1px solid transparent;
   display: flex;
@@ -97,10 +97,32 @@
   }
 }
 
+// actions
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.action-btn {
+  color: #161823;
+  padding: 6px 12px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .more-btn {
   font-size: 1.8rem;
   margin-left: 20px;
   padding: 4px 8px;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 12px;
   cursor: pointer;
 }
