@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faSpinner, faCircleXmark, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 
 import Button from '~/components/Button';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import images from '~/assets/images';
-import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
+import Search from '../Search';
 import {
   BoxMessageIcon,
   FavoriteIcon,
@@ -19,7 +16,6 @@ import {
   KeyboardIcon,
   LanguageIcon,
   MessageIcon,
-  SearchIcon,
   SettingIcon,
   SignOutIcon,
   UserIcon,
@@ -60,12 +56,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-  const [searchResults, setSearchResults] = useState([]);
   const currentUser = true;
-
-  useEffect(() => {
-    setSearchResults([]);
-  }, []);
 
   const handleMenuChange = (menuItem) => {
     console.log(menuItem);
@@ -102,32 +93,9 @@ function Header() {
         <div className={cx('logo')}>
           <img src={images.logo} alt="Tiktok logo" />
         </div>
-        <HeadlessTippy
-          visible={searchResults.length > 0}
-          interactive
-          render={(attrs) => (
-            <div className={cx('search-results')} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx('search-title')}>Tài khoản</h4>
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx('search')}>
-            <input placeholder="Tìm kiếm" spellCheck={false} />
-            <button className={cx('clear')}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-            <button className={cx('search-btn')}>
-              <SearchIcon />
-            </button>
-          </div>
-        </HeadlessTippy>
+
+        <Search />
+
         <div className={cx('actions')}>
           <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
             Tải lên
