@@ -59,41 +59,45 @@ function Search() {
   };
 
   return (
-    <HeadlessTippy
-      visible={showResult && searchResult.length > 0}
-      interactive
-      render={(attrs) => (
-        <div className={cx('search-results')} tabIndex="-1" {...attrs}>
-          <PopperWrapper>
-            <h4 className={cx('search-title')}>Tài khoản</h4>
-            {searchResult.map((result) => {
-              return <AccountItem key={result.id} data={result} />;
-            })}
-          </PopperWrapper>
-        </div>
-      )}
-      onClickOutside={handleHideResult}
-    >
-      <div className={cx('search')}>
-        <input
-          ref={inputRef}
-          value={searchValue}
-          placeholder="Tìm kiếm"
-          spellCheck={false}
-          onChange={handleChange}
-          onFocus={() => setShowResult(true)}
-        />
-        {!!searchValue && !loading && (
-          <button className={cx('clear')} onClick={handleClear}>
-            <FontAwesomeIcon icon={faCircleXmark} />
-          </button>
+    // Using a wrapper <div> or <span> tag around the reference
+    // element solves this by creating a new parentNode context.
+    <div>
+      <HeadlessTippy
+        visible={showResult && searchResult.length > 0}
+        interactive
+        render={(attrs) => (
+          <div className={cx('search-results')} tabIndex="-1" {...attrs}>
+            <PopperWrapper>
+              <h4 className={cx('search-title')}>Tài khoản</h4>
+              {searchResult.map((result) => {
+                return <AccountItem key={result.id} data={result} />;
+              })}
+            </PopperWrapper>
+          </div>
         )}
-        {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-        <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-          <SearchIcon />
-        </button>
-      </div>
-    </HeadlessTippy>
+        onClickOutside={handleHideResult}
+      >
+        <div className={cx('search')}>
+          <input
+            ref={inputRef}
+            value={searchValue}
+            placeholder="Tìm kiếm"
+            spellCheck={false}
+            onChange={handleChange}
+            onFocus={() => setShowResult(true)}
+          />
+          {!!searchValue && !loading && (
+            <button className={cx('clear')} onClick={handleClear}>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+          )}
+          {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+          <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+            <SearchIcon />
+          </button>
+        </div>
+      </HeadlessTippy>
+    </div>
   );
 }
 
