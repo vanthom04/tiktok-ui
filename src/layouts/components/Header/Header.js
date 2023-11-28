@@ -106,14 +106,15 @@ function Header() {
           </Button>
           {currentUser ? (
             <>
-              <Tippy content="Tin nhắn" placement="bottom">
+              <Tippy delay={[0, 50]} content="Tin nhắn" placement="bottom">
                 <button className={cx('action-btn')}>
                   <MessageIcon />
                 </button>
               </Tippy>
-              <Tippy content="Hộp thư" placement="bottom">
+              <Tippy delay={[0, 50]} content="Hộp thư" placement="bottom">
                 <button className={cx('action-btn')}>
                   <BoxMessageIcon />
+                  <span className={cx('badge')}>12</span>
                 </button>
               </Tippy>
             </>
